@@ -10,6 +10,12 @@
 
 .banner {
     position: relative;
+
+    &.full {
+        .banner-align {
+            height: 100svh;
+        }
+    }
 }
 
 .banner-media {
@@ -24,29 +30,6 @@
         @include objectFit;
     }
 }
-
-// .video {
-//     position: absolute;
-//     inset: 0;
-//     clip: rect(auto, auto, auto, auto);
-//     display: none;
-
-//     &.video-present {
-//         display: block;
-//         overflow: hidden;
-//     }
-
-//     video {
-//         position: fixed;
-//         left: 50%;
-//         top: 50%;
-//         min-width: 100%;
-//         min-height: 100%;
-//         width: auto;
-//         height: auto;
-//         transform: translate(-50%, -50%);
-//     }
-// }
 
 .video {
     position: absolute;
@@ -74,6 +57,7 @@
         height: auto;
         min-width: calc(100% + 8px);
         min-height: calc(100% + 8px);
+        object-fit: cover;
     }
 }
 
@@ -118,26 +102,6 @@
     .banner-info {
         >*+* {
             margin-top: 1.5rem;
-        }
-    }
-}
-
-@include minMedia(xl) {
-    .banner.full {
-        .banner-align {
-            height: calc(100svh - var(--h-height));
-        }
-    }
-
-    .banner-slider {
-        .swiper-button-prev {
-            left: 1rem;
-            color: var(--clr-white);
-        }
-
-        .swiper-button-next {
-            right: 1rem;
-            color: var(--clr-white);
         }
     }
 }
