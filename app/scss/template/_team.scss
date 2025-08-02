@@ -1,0 +1,29 @@
+@use "./../mixins" as *;
+
+/*--------------------*/
+/*  Team              */
+/*--------------------*/
+.team-item {
+    text-align: center;
+
+    >*+* {
+        margin-top: max(1rem, 1.25vw);
+    }
+}
+
+.team-img {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--rd-1);
+    padding-top: 120%;
+
+    img {
+        @include objectFit;
+    }
+}
+
+.team-name {
+    font-size: var(--h4);
+    line-height: 1.2;
+    color: var(--clr-black);
+}

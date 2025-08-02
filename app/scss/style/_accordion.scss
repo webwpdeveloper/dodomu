@@ -1,0 +1,90 @@
+@use "./../mixins"as *;
+
+/*--------------------*/
+/*  Accordion         */
+/*--------------------*/
+.accordion {
+    position: relative;
+    z-index: 1;
+}
+
+.accordion-item {
+    --padding-acc: 2rem;
+    position: relative;
+    border-bottom: rem(1) solid var(--clr-border);
+
+    &:first-child {
+        border-top: rem(1) solid var(--clr-border);
+    }
+}
+
+.accordion-title {
+    position: relative;
+    cursor: pointer;
+    font-size: var(--h5);
+    line-height: 1.36em;
+    font-weight: 500;
+    color: var(--clr-title);
+    padding-block: var(--padding-acc);
+    padding-right: var(--padding-acc);
+    transition: var(--transition-1);
+
+    i {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: var(--padding-acc);
+        width: var(--padding-acc);
+        height: 1.36em;
+        transition: var(--transition-1);
+
+        &::before {
+            //* arrow style
+            // content: "";
+            // position: absolute;
+            // top: 45%;
+            // left: 50%;
+            // transform: translate(-50%, -50%) rotate(45deg);
+            // width: 0.5rem;
+            // height: 0.5rem;
+            // border-right: rem(2) solid currentColor;
+            // border-bottom: rem(2) solid currentColor;
+
+            //* triangle style
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 55%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 35%;
+            background: var(--clr-black);
+            clip-path: polygon(100% 0, 0 0, 50% 100%);
+            transition: var(--transition-1);
+        }
+    }
+
+    &.is-active {
+        i {
+            transform: rotateX(-180deg);
+        }
+    }
+}
+
+.accordion-inner {
+    display: none;
+    padding-bottom: var(--padding-acc);
+    padding-right: var(--padding-acc);
+}
+
+@include minMedia(xl) {
+    .accordion-title:hover {
+        color: var(--clr-primary);
+    }
+}
+
+@include maxMedia(lg) {
+    .accordion-item {
+        --padding-acc: .875rem;
+    }
+}

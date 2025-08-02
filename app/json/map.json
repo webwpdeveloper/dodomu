@@ -1,0 +1,46 @@
+[{
+    "dataRel": "map",
+    "dataLat": 49.84496,
+    "dataLng": 24.0074117,
+    "marker": "img/marker.png",
+    "mobileMarker": "img/marker-mobile.png",
+    "city": "м. Львів",
+    "street": "вул. Шевченка 60/10",
+    "googleLink": "https://goo.gl/maps/hKTRgdgx7rjNzhTd6",
+    "phone": "+38(097)-861-77-79",
+    "phoneLink": "+380978617779",
+    "email": "infoEmail@gmail.com",
+    "workDaysOne": "Mo-Fr 08:00 AM - 20:00 PM",
+    "workDaysTwo": "Sa-Su 10:00 AM - 22:00 PM"
+  },
+  {
+    "dataRel": "map",
+    "dataLat": 49.8248752,
+    "dataLng": 23.9593327,
+    "marker": "img/marker.png",
+    "mobileMarker": "img/marker-mobile.png",
+    "city": "м. Львів",
+    "street": "вулиця Ряшівська, 9/1",
+    "googleLink": "https://maps.app.goo.gl/pRyQ1bqk35mqcCHu9",
+    "phone": "+38(097)-861-77-79",
+    "phoneLink": "+380978617779",
+    "email": "infoEmail@gmail.com",
+    "workDaysOne": "Mo-Fr 08:00 AM - 20:00 PM",
+    "workDaysTwo": "Sa-Su 10:00 AM - 22:00 PM"
+  },
+  {
+    "dataRel": "map",
+    "dataLat": 49.8096343,
+    "dataLng": 23.9771938,
+    "marker": "img/marker.png",
+    "mobileMarker": "img/marker-mobile.png",
+    "city": "м. Львів",
+    "street": "вулиця Щирецька, 16",
+    "googleLink": "https://maps.app.goo.gl/z9jYUydgx7nqjoyG8",
+    "phone": "+38(097)-861-77-79",
+    "phoneLink": "+380978617779",
+    "email": "infoEmail@gmail.com",
+    "workDaysOne": "Mo-Fr 08:00 AM - 20:00 PM",
+    "workDaysTwo": "Sa-Su 10:00 AM - 22:00 PM"
+  }
+]

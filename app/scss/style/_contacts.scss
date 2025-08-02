@@ -1,0 +1,76 @@
+@use "./../mixins"as *;
+
+/*--------------------*/
+/*  Contacts          */
+/*--------------------*/
+.ct-items-row {
+  --bs-gutter-y: 1.875rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+}
+
+.contact-item+.contact-item {
+  margin-top: 1.875rem;
+}
+
+.contact-item-img {
+  --size: 3.75rem;
+  position: relative;
+  align-self: flex-start;
+  flex-shrink: 0;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 4%;
+  border-radius: 100%;
+  border: rem(1) solid var(--clr-black);
+
+  img {
+    @include centerAbsolute;
+    max-width: 50%;
+    max-height: 50%;
+  }
+}
+
+.contact-item-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 500;
+  font-size: var(--h6);
+  line-height: 1.3em;
+  color: var(--clr-text);
+
+  >*+* {
+    margin-top: 0.25rem;
+  }
+}
+
+.contact-block {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  padding-top: max(22.5rem, 36vw);
+  border-radius: var(--rd-1);
+}
+
+.map {
+  position: absolute;
+  inset: 0;
+}
+
+@include minMedia(xl) {
+  .contact-item-info {
+    a:hover {
+      color: var(--clr-primary);
+    }
+  }
+}
+
+@include maxMedia(sm) {
+  .contact-item-img {
+    --size: 2.5rem;
+  }
+}

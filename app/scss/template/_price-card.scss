@@ -1,0 +1,24 @@
+@use "./../mixins" as *;
+
+/*--------------------*/
+/*  Price Cards       */
+/*--------------------*/
+.prc-cards {
+    gap: var(--sp-sm) var(--sp-xs);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+}
+
+.prc-card {
+    gap: 0;
+    display: grid;
+    grid-row: span 6;
+    grid-template-rows: subgrid;
+    border-radius: var(--rd-1);
+    border: rem(1) solid var(--clr-plc);
+    padding: 1.5rem max(.625rem, 6%);
+
+    >*+* {
+        margin-top: 1rem;
+    }
+}

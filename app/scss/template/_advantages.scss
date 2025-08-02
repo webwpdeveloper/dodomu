@@ -1,0 +1,39 @@
+@use "./../mixins" as *;
+
+/*--------------------*/
+/*  Advantages        */
+/*--------------------*/
+.advt-item {
+    text-align: center;
+    padding-inline: 0.625rem;
+
+    >*+* {
+        margin-top: max(1rem, 1.25vw);
+    }
+}
+
+.advt-img {
+    --adv-size: max(5rem, 5vw);
+    position: relative;
+    width: var(--adv-size);
+    height: var(--adv-size);
+    flex-shrink: 0;
+    border-radius: 100%;
+    border: 0.125rem solid var(--clr-black);
+    margin-inline: auto;
+
+    >* {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        height: 50%;
+    }
+}
+
+.advt-title {
+    font-size: var(--h4);
+    line-height: 1.25em;
+    color: var(--clr-black);
+}

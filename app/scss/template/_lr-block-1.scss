@@ -1,0 +1,27 @@
+@use "./../mixins"as *;
+
+/*--------------------*/
+/*  LR Block          */
+/*--------------------*/
+.lr-img-1 {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+  border-radius: var(--rd-1);
+
+  img {
+    @include objectFit;
+  }
+}
+
+.lr-content-1 {
+  >*+* {
+    margin-top: 4%;
+  }
+}
+
+@include maxMedia(lg) {
+  .lr-img-1 {
+    margin-bottom: 4%;
+  }
+}

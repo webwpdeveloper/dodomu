@@ -1,0 +1,63 @@
+@use "./../mixins"as *;
+
+/*--------------------*/
+/*  LR Block          */
+/*--------------------*/
+.lr-block-3 {
+  --lr-x-space: max(1.875rem, 7vw);
+  --lr-y-space: max(0.875rem, 2.5vw)
+}
+
+.lr-img-3 {
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+  border-radius: var(--rd-1);
+
+  img {
+    @include objectFit;
+  }
+}
+
+.lr-content-3 {
+  >*+* {
+    margin-top: var(--lr-y-space);
+  }
+}
+
+@include minMedia(lg) {
+  .lr-block-3 {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    grid-column-gap: var(--lr-x-space);
+    grid-row-gap: var(--lr-y-space);
+
+    &.right {
+      grid-template-columns: 1.1fr .9fr;
+
+      .lr-img-3 {
+        grid-area: 1 / 2 / 3 / 3;
+      }
+    }
+  }
+
+  .lr-img-3 {
+    grid-area: 3 / 2 / 1 / 1;
+  }
+
+  .lr-title-3 {
+    align-self: end;
+  }
+
+  .lr-content-3 {
+    align-self: start;
+  }
+}
+
+@include maxMedia(lg) {
+  .lr-block-3 {
+    >*+* {
+      margin-top: var(--lr-y-space);
+    }
+  }
+}

@@ -1,0 +1,34 @@
+// Helpers
+@use "helpers/_helpers-style";
+
+
+// Banner styles
+@use "style/_banner";
+@use "style/_breadcrumbs";
+
+
+// Template styles
+@use "template/_advantages";
+@use "template/_price-card";
+@use "template/_team";
+@use "template/_brands";
+
+
+// Left & Right block
+@use "template/_lr-block-1";
+@use "template/_lr-block-2";
+@use "template/_lr-block-3";
+
+
+// FAQ
+@use "style/_accordion";
+
+
+// Contacts
+@use "style/_contacts";
+@use "style/_info-box";
+
+// Bottom styles
+@use "style/_footer";
+@use "style/_popups";
+@use "style/_page-404";

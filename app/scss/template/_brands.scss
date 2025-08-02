@@ -1,0 +1,27 @@
+@use "./../mixins" as *;
+
+/*--------------------*/
+/*  Brands            */
+/*--------------------*/
+.brand-slider .swiper-container {
+  padding: rem(1);
+}
+
+.brand-item {
+  position: relative;
+  z-index: 1;
+  padding-top: 64%;
+  width: 100%;
+  outline: 0.125rem solid var(--clr-black);
+  outline-offset: -0.625rem;
+
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 70%;
+    max-height: 50%;
+    content-visibility: auto;
+  }
+}

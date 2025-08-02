@@ -1,0 +1,171 @@
+@use "./../mixins" as *;
+
+/*--------------------*/
+/*  Footer            */
+/*--------------------*/
+.footer-top {
+  padding-block: max(1rem, 3.5vw);
+  padding-inline: max(1rem, 2.5vw);
+  border-radius: var(--rd-1);
+  background-color: var(--bg-2);
+
+  .row {
+    --bs-gutter-y: 1.875rem;
+  }
+}
+
+.footer-logo {
+  display: block;
+  max-width: 13.75rem;
+  width: 100%;
+
+  img {
+    display: block;
+    width: 100%;
+    filter: invert(1);
+  }
+}
+
+.footer-links {
+  ul {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 4vw;
+  }
+
+  li {
+    line-height: 0;
+  }
+
+  a {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.25em;
+    color: var(--clr-white);
+  }
+}
+
+.footer-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.25rem;
+}
+
+.footer-cnt-item {
+  font-size: 1rem;
+  line-height: 1.25em;
+  color: var(--clr-white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  img {
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(1);
+  }
+}
+
+.footer-bottom {
+  padding-block: 1rem;
+  padding-inline: max(1rem, 2.5vw);
+
+  .row {
+    --bs-gutter-y: 1rem;
+  }
+}
+
+.footer-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 2vw;
+
+  >* {
+    font-size: 1rem;
+    line-height: 1.25em;
+    color: var(--clr-text);
+  }
+}
+
+.social {
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  li {
+    line-height: 0;
+  }
+
+  a {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+    background-color: var(--bg-2);
+
+    >* {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 60%;
+      max-height: 60%;
+    }
+  }
+}
+
+.dev-link {
+  font-size: 1rem;
+  line-height: 1.25em;
+  color: var(--clr-text);
+  gap: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@include minMedia(xl) {
+
+  .footer-cnt-item:hover,
+  .footer-links a:hover,
+  .footer-copy a:hover {
+    color: var(--clr-primary);
+  }
+
+  .social a:hover {
+    background-color: var(--clr-primary);
+  }
+
+  .dev-link:hover {
+    color: var(--clr-primary);
+  }
+}
+
+@include maxMedia(xl) {
+  .footer-logo {
+    max-width: 11.25rem;
+  }
+}
+
+@include maxMedia(lg) {
+  .footer-logo {
+    max-width: 10rem;
+    margin-inline: auto;
+  }
+
+  .footer-contacts {
+    align-items: center;
+  }
+
+  .footer-copy,
+  .dev-link {
+    justify-content: center;
+  }
+}
