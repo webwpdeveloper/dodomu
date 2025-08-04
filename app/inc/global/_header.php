@@ -2,10 +2,10 @@
     <div class="h-wrap">
         <div class="container">
             <div class="h-inner">
-                <div class="h-burger js-open-menu"><i></i></div>
                 <a class="h-logo" href="index.php" aria-label="Company logo">
                     <img width="88" height="40" src="img/logo.svg" alt="" loading="eager">
                 </a>
+                <div class="h-burger js-open-menu"><i></i></div>
                 <div class="h-menu">
                     <nav class="h-links">
                         <ul>
@@ -16,7 +16,7 @@
                             <li><a href="contacts.php">Контакти</a></li>
                         </ul>
                     </nav>
-                    <div class="btn"><b>Форма замовлення</b></div>
+                    <div class="btn btn-secondary opne-popup" data-rel="2"><b>Форма замовлення</b></div>
                 </div>
             </div>
         </div>

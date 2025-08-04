@@ -10,12 +10,12 @@
     --ff-1: "Open Sans", sans-serif;
 
 
-    --h1: 3.75rem; //60px
-    --h2: 3.375rem; //54px
-    --h3: 2.75rem; //44px
-    --h4: 2.125rem; //34px
-    --h5: 1.5rem; //24px
-    --h6: 1.25rem; //20px
+    --h1: 5rem; //80px
+    --h2: 3.5rem; //56px
+    --h3: 2.5rem; //40px
+    --h4: 1.75rem; //28px
+    --h5: 1.375rem; //22px
+    --h6: 1rem; //16px
 
     --text: 1.25rem; //20px
     --text-sm: 1rem; //16px
@@ -27,31 +27,32 @@
     --sp-xs: 1.25rem; //20px
 
 
-    --rd-1: .5rem;
+    --rd-1: 0.75rem;
+    --rd-2: 0.375rem;
 
 
-    --clr-title: #131E29;
-    --clr-text: #636662;
-    --clr-plc: #4A5055;
-    --clr-input: #D3D3D3;
-    --clr-border: #D3D3D3;
+    --clr-title: #181B20;
+    --clr-text: #767676;
+    --clr-plc: rgba(0, 0, 0, 0.75);
+    --clr-input: #181B20;
+    --clr-border: rgba(0, 0, 0, 0.15);
 
 
     --clr-white: #ffffff;
-    --clr-black: #131E29;
+    --clr-black: #181B20;
     --clr-grey: #F9F9F9;
-    --clr-red: #ff0000;
+    --clr-red: #FF0000;
     --clr-green: #00A850;
 
 
-    --clr-primary: #009F4D;
-    --clr-secondary: #ff6804;
+    --clr-primary: #FFC500;
+    --clr-secondary: #181B20;
 
 
     --bg-1: var(--clr-grey);
-    --bg-2: #1A2530;
+    --bg-2: #0E1116;
 
-    --blur: 5px;
+    --blur: 0.25rem;
     --bg-overlay: rgba(0, 0, 0, 0.5);
     --box-shadow: 0 0 1.5rem 0 rgba(0, 0, 0, 0.03), 0 0 0.5rem 0 rgba(0, 0, 0, 0.06);
 
@@ -134,6 +135,26 @@ footer {
         opacity: 1;
         transition: 0.15s linear opacity;
     }
+
+    &.sec-padd{
+        padding-block: var(--sp-xl);
+
+        + .sec-padd{
+            margin-top: 0;
+        }
+    }
+
+    &.sec-black{
+        background-color: var(--bg-2);
+
+        .title,.text{
+            color: var(--clr-white);
+        }
+    }
+
+    &.sec-gray{
+        background-color: var(--bg-1);
+    }
 }
 
 .container,
@@ -154,10 +175,6 @@ footer {
     }
 }
 
-.informer,
-.cart,
-.cart-informer,
-.cookies-informer,
 .popup-wrapper {
     display: none;
 }
@@ -165,7 +182,8 @@ footer {
 // container size change 
 @include minMedia(xl) {
     :root {
-        --container-width: 89.604vw;
+        --container-width: 80.417vw;
+        --container-padd: calc((100vw - var(--container-width)) / 2);
     }
 
     .container {
@@ -208,7 +226,7 @@ footer {
         --h3: 2rem; //32px
         --h4: 1.75rem; //28px
         --h5: 1.25rem //20px
-            --h6: 1.125rem; //18px
+        --h6: 1.125rem; //18px
 
         --text: 1.125rem; //18px
         --text-sm: 0.9375rem; //15px

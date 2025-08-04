@@ -12,15 +12,16 @@
 
     position: relative;
     z-index: 1;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1em;
     font-weight: 500;
-    color: var(--clr-white);
+    letter-spacing: -0.32px;
+    color: var(--clr-black);
     
-    padding: .9em 1.6em;
+    padding: 0.875rem 1.5rem;
     border: none;
-    border-radius: var(--rd-1);
-    background-color: var(--clr-black);
+    border-radius: var(--rd-2);
+    background-color: var(--clr-primary);
     transition: var(--transition-1);
 
     gap: .8em;
@@ -124,8 +125,8 @@
     }
 
     .btn-secondary:hover {
-        color: var(--clr-white);
-        background-color: var(--clr-secondary);
+        color: var(--clr-black);
+        background-color: var(--clr-primary);
     }
 
     .btn-close:hover {

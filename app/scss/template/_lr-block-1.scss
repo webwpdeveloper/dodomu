@@ -3,11 +3,15 @@
 /*--------------------*/
 /*  LR Block          */
 /*--------------------*/
+.rl-block{
+  gap: var(--sp-sm);
+  display: grid;
+}
+
 .lr-img-1 {
   position: relative;
-  padding-top: 100%;
+  aspect-ratio: 1 / 1.075;
   overflow: hidden;
-  border-radius: var(--rd-1);
 
   img {
     @include objectFit;
@@ -15,13 +19,37 @@
 }
 
 .lr-content-1 {
+  align-self: center;
+
   >*+* {
     margin-top: 4%;
   }
 }
 
-@include maxMedia(lg) {
+@include minMedia(lg) {
+  .rl-block {
+    grid-template-columns: 35.2% auto;
+  }
+
+  .rl-right {
+    grid-template-columns: auto 35.2%;
+
+    .lr-img-1 {
+      order: 1;
+      margin-left: 0;
+      margin-right: calc((var(--container-padd) + var(--bs-gutter-x) * 0.5) * -1);
+    }
+  }
+
   .lr-img-1 {
-    margin-bottom: 4%;
+    width: calc(100% + var(--container-padd) + var(--bs-gutter-x) * 0.5);
+    margin-left: calc((var(--container-padd) + var(--bs-gutter-x) * 0.5) * -1);
+    border-radius: 0 var(--rd-1) var(--rd-1) 0;
+  }
+}
+
+@include minMedia(xl) {
+  .rl-block {
+    gap: clamp(1.875rem, -13.3149rem + 31.6456vw, 14.375rem);
   }
 }

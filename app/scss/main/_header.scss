@@ -22,10 +22,6 @@ header {
     transition: var(--transition-1);
 }
 
-header.scrolled .h-wrap {
-    background-color: var(--clr-black);
-}
-
 .h-inner {
     position: relative;
     width: 100%;
@@ -34,6 +30,7 @@ header.scrolled .h-wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: var(--transition-1);
 }
 
 .h-logo {
@@ -60,14 +57,21 @@ header.scrolled .h-wrap {
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 2vw;
+        gap: 2.1vw;
     }
 
     a {
-        font-size: 1.25rem;
+        font-size: 1rem;
         line-height: 1em;
         font-weight: 500;
-        color: var(--clr-black);
+        letter-spacing: -0.32px;
+        color: var(--clr-white);
+    }
+}
+
+header.scrolled{
+    .h-wrap {
+        background-color: var(--clr-black);
     }
 }
 
@@ -88,13 +92,17 @@ header.scrolled .h-wrap {
         --h-logo-width: 5.5rem;
     }
 
+    .h-wrap{
+        background-color: var(--clr-black);
+        position: relative;
+        z-index: 10;
+    }
+
     .h-burger {
         position: relative;
         display: block;
         width: 2.5rem;
         height: 2.5rem;
-        border-radius: var(--rd-1);
-        border: rem(1) solid var(--clr-grey);
 
         i {
             display: inline-block;
@@ -104,7 +112,7 @@ header.scrolled .h-wrap {
             transform: translate(-50%, -50%);
             width: 60%;
             height: rem(2);
-            background-color: var(--clr-black);
+            background-color: var(--clr-white);
             transition: var(--transition-1);
 
             &:before,
@@ -115,7 +123,7 @@ header.scrolled .h-wrap {
                 top: rem(-6);
                 width: 100%;
                 height: 100%;
-                background-color: var(--clr-black);
+                background-color: var(--clr-white);
                 transition: var(--transition-1);
             }
 
@@ -123,11 +131,6 @@ header.scrolled .h-wrap {
                 top: rem(6);
             }
         }
-    }
-
-    .h-inner {
-        justify-content: flex-start;
-        background-color: var(--clr-white);
     }
 
     .h-menu {
@@ -145,10 +148,11 @@ header.scrolled .h-wrap {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        background-color: var(--clr-white);
+        background-color: var(--clr-black);
         opacity: 0;
         padding: 1rem;
         padding-top: calc(var(--h-height) + 1rem);
+        padding-bottom: 2rem;
 
         >*+* {
             margin-top: 2rem;
@@ -158,20 +162,33 @@ header.scrolled .h-wrap {
     .h-menu-overlay {
         display: block;
         position: fixed;
-        z-index: 99;
+        z-index: 9;
         inset: 0;
         opacity: 0;
         visibility: hidden;
-        background-color: rgba(19, 30, 41, 0.8);
+        background-color: var(--bg-overlay);
+        backdrop-filter: blur(0.25rem);
         transition: var(--transition-1);
     }
 
     .h-links {
         margin-block: auto;
+        width: 100%;
 
         ul {
             gap: 1.25rem;
             flex-direction: column;
+            width: 100%;
+        }
+
+        li{
+            width: 100%;
+            text-align: center;
+        }
+
+        a{
+            line-height: 2;
+            width: 100%;
         }
     }
 

@@ -7,12 +7,8 @@
     <div class="popup-container">
         <div class="popup-align">
             <div class="popup-info">
-                <div class="h3 title text-center">
-                    Thank you for subscribing!
-                </div>
-                <div class="text">
-                    We promise that you will receive only useful information about our news and no spam
-                </div>
+                <div class="h3 title">Дякуємо</div>
+                <div class="text">Ваша заявка успішно відправлена! Найближчим часом з вами зконтактує менеджер для узгодження деталей!</div>
             </div>
         </div>
         <button class="btn-close close-popup"></button>
