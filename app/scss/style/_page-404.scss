@@ -1,47 +1,39 @@
-@use "./../mixins"as *;
+@use "./../mixins" as *;
 
-/*--------------------*/
+/*====================*/
 /*  404               */
-/*--------------------*/
+/*====================*/
 .page-404 {
-    margin: 0;
-    padding: 2.5rem 0;
+    --gap: 1.25rem;
     width: 100%;
-    min-height: calc(100svh - var(--h-height));
+    min-height: 100svh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin: 0;
+    padding-block: calc(var(--h-height) + var(--gap)) var(--gap);
 }
 
 .page-404-inner {
+    text-align: center;
 
-    .text {
-        margin-top: 1rem;
-    }
-
-    .btn {
-        margin-top: 1.25rem;
+    >*+* {
+        margin-top: var(--gap);
     }
 }
 
-.page-404-img {
-    display: block;
-
-    img {
-        width: 100%;
-    }
+.page-404-title {
+    font-size: 5rem;
+    line-height: 1.1em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--clr-primary);
 }
 
-@include maxMedia(md) {
-    .page-404-inner {
-        text-align: center;
-
-        .text {
-            margin-top: .5rem;
-        }
-
-        .btn {
-            margin-top: .875rem;
-        }
+@include minMedia(xl) {
+    .page-404 {
+        --gap: 2.5rem;
     }
 }

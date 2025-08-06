@@ -1,39 +1,111 @@
 @use "./../mixins" as *;
 
-/*--------------------*/
+/*====================*/
 /*  Advantages        */
-/*--------------------*/
-.advt-item {
-    text-align: center;
-    padding-inline: 0.625rem;
+/*====================*/
+.advt-block {
+    --items: 1;
+    --gap: 1.25rem;
+    position: relative;
+    gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(var(--items), 1fr);
+}
 
-    >*+* {
-        margin-top: max(1rem, 1.25vw);
+.advt-card {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    border-radius: 0.75rem;
+
+    &-front,
+    &-back {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        min-height: rem(300);
+
+        transition: var(--transition-1);
+        transition-property: transform, opacity;
+
+        text-align: center;
+        padding: 1.25rem;
+    }
+
+    &-front {
+        gap: 1.5rem;
+        transform: rotateY(0deg);
+        background-color: var(--clr-black);
+        border-radius: 0.875rem;
+    }
+
+    &-back {
+        --clr-white: #181B20;
+        position: absolute;
+        inset: -0.125rem;
+        opacity: 0;
+        gap: 1.25rem;
+        transform: rotateX(-180deg);
+        background-color: var(--clr-primary);
+        border-radius: inherit;
+    }
+
+    .text {
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.6);
     }
 }
 
-.advt-img {
-    --adv-size: max(5rem, 5vw);
+.advt-icon {
+    --size: 7.5rem;
     position: relative;
-    width: var(--adv-size);
-    height: var(--adv-size);
-    flex-shrink: 0;
-    border-radius: 100%;
-    border: 0.125rem solid var(--clr-black);
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
     margin-inline: auto;
 
-    >* {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 50%;
-        height: 50%;
+    img {
+        width: 100%;
     }
 }
 
 .advt-title {
     font-size: var(--h4);
-    line-height: 1.25em;
-    color: var(--clr-black);
+    line-height: normal;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--clr-white);
+}
+
+@include minMedia(lg) {
+    .advt-block {
+        --items: 3;
+    }
+
+    .advt-card {
+        &-front,
+        &-back {
+            min-height: rem(384);
+            padding: 1.5rem;
+        }
+
+        &-front {
+            gap: 2.875rem;
+        }
+    }
+}
+
+@include minMedia(xl) {
+    .advt-card:hover {
+        >.advt-card-front {
+            transform: rotateX(180deg);
+        }
+
+        >.advt-card-back {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+    }
 }

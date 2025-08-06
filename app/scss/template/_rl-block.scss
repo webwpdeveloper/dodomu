@@ -1,0 +1,49 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  RL Block          */
+/*====================*/
+.rl-block {
+    gap: var(--sp-title);
+    display: grid;
+}
+
+.rl-img {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 0.75rem;
+
+    img {
+        @include objectFit;
+        border-radius: 0.75rem;
+    }
+}
+
+.rl-content {
+    align-self: center;
+
+    >*+* {
+        margin-top: var(--sp-title);
+    }
+}
+
+@include minMedia(lg) {
+    .rl-block {
+        grid-template-columns: 49.343% auto;
+    }
+
+    .rl-right {
+        grid-template-columns: auto 49.343%;
+
+        .rl-img {
+            order: 1;
+        }
+    }
+}
+
+@include minMedia(xl) {
+    .rl-block {
+        gap: var(--sp-xl);
+    }
+}

@@ -1,4 +1,4 @@
-@use "./../mixins"as *;
+@use "./../mixins" as *;
 
 /* margins */
 .mt-xl {
@@ -43,4 +43,8 @@
 
 .mx-auto {
     margin-inline: auto;
+}
+
+.mb-title {
+    margin-bottom: var(--sp-title);
 }

@@ -1,33 +1,33 @@
 @use "./../mixins" as *;
 
-/*--------------------*/
+/*====================*/
 /*  Form Block        */
-/*--------------------*/
+/*====================*/
 .form-block {
-  --space: 1.5rem;
+    --space: 1.75rem;
 
-  .row {
-    --bs-gutter-x: var(--space);
-    --bs-gutter-y: var(--space);
-  }
-
-  >* {
-    margin-bottom: var(--space);
-
-    &:last-child {
-      margin-bottom: 0;
+    .row {
+        --bs-gutter-x: var(--space);
+        --bs-gutter-y: var(--space);
     }
-  }
+
+    >* {
+        margin-bottom: var(--space);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 @include maxMedia(xl) {
-  .form-block {
-    --space: 1.25rem;
-  }
+    .form-block {
+        --space: 1.25rem;
+    }
 }
 
-@include maxMedia(lg) {
-  .form-block {
-    --space: 1rem;
-  }
+@include maxMedia(md) {
+    .form-block {
+        --space: 1rem;
+    }
 }

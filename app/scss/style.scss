@@ -1,28 +1,20 @@
 // Helpers
 @use "helpers/_helpers-style";
 
-
 // Banner styles
-@use "style/_banner";
 @use "style/_breadcrumbs";
-
+@use "style/_banner";
 
 // Template styles
 @use "template/_advantages";
-@use "template/_price-card";
-@use "template/_team";
-@use "template/_brands";
-
-
-// Left & Right block
-@use "template/_lr-block-1";
-@use "template/_lr-block-2";
-@use "template/_lr-block-3";
-
-
-// FAQ
+@use "template/_lr-block";
+@use "template/_services";
+@use "template/_projects";
+@use "template/_steps";
 @use "style/_accordion";
-
+@use "template/_rl-block";
+@use "template/_numbers";
+@use "template/_team";
 
 // Contacts
 @use "style/_contacts";

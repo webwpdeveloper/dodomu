@@ -13,8 +13,6 @@
 //*====================================
 //*  DYNAMIC LOAD JS                  =
 //*====================================
-//*  OTHER JS                         =
-//*====================================
 
 const _functions = {};
 let winW, winH, winScr, isTouchScreen, isAndroid, isChrome, isIPhone, isMac, isSafari, isFirefox;
@@ -41,7 +39,6 @@ jQuery(function ($) {
     if (isMac) $('html').addClass('mac');
     if (isSafari) $('html').addClass('safari');
     if (isFirefox) $('html').addClass('firefox');
-
 
 
 
@@ -105,77 +102,144 @@ jQuery(function ($) {
 
             _functions.resizeCall();
         }, false);
-    }
-
+    };
 
 
 
     //*==============
     //*  ANIMATION  =
     //*==============
-    const observerFunction = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(entry => {
+    // Elements Detect
+    const observerAnimation = new IntersectionObserver(function (entries, observer) {
+        entries.forEach((entry, index) => {
             if (!entry.isIntersecting) return;
+
+            if (index < 10) {
+                $(entry.target).css({ '--animate-index': `${index}` })
+            } else {
+                $(entry.target).css({ '--animate-index': `0` })
+            }
 
             entry.target.classList.add('|', 'animated')
             observer.unobserve(entry.target)
         })
-
     }, {
         root: null,
         threshold: 0,
-        rootMargin: (window.innerWidth > 767) ? "-50px" : "0%"
+        rootMargin: winW < 768 ? "0% 0%" : "-10% 0%"
     });
 
-    document.querySelectorAll('.section').forEach(block => {
-        observerFunction.observe(block)
+    $(".slideUp").each(function (index, element) {
+        observerAnimation.observe(element)
     });
 
+    // Titles Animate
+    $(".text-animate").each(function () {
+        $(this).find("*").addBack().contents().each(function () {
+            if (this.nodeType == 3) {
+                let $this = $(this);
+                $this.replaceWith(
+                    $this.text().replace(/[^\s]+/g, "<i class='text-animate__word'><i>$&</i></i>")
+                );
+            }
+        });
+
+        let img = $(this).find("img");
+
+        img.each(function (i, el) {
+            $(el).wrap(function () {
+
+                return '<i class="text-animate__word"><i></i></i></i>';
+            });
+        });
+    });
+
+    const options = {
+        root: document,
+        rootMargin: (window.innerWidth > 991) ? "0%" : "0%"
+    };
+
+    const textAnimateObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries)
+            if (
+                entry.isIntersecting &&
+                !entry.target.classList.contains("text-animated")
+            ) {
+                entry.target.classList.add("text-animated");
+                const letters = entry.target.querySelectorAll(".text-animate__word");
+                const delay = 300 / letters.length;
+                letters.forEach(function (letter, i) {
+                    setTimeout(() => {
+                        letter.classList.add("animated");
+                    }, i * delay);
+                });
+            }
+    }, options);
+
+    setTimeout(() => {
+        document.querySelectorAll(".text-animate")?.forEach((element) => {
+            textAnimateObserver.observe(element);
+        });
+    }, 100);
+
+    // Numbers
+    if ($(".number-card-wrap").length) {
+        const obsCounter = new IntersectionObserver(
+            function (entries, observer) {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+
+                    $(entry.target)
+                        .find(".number-value span")
+                        .each(function () {
+                            $(this)
+                                .prop("Counter", 0)
+                                .animate(
+                                    {
+                                        Counter: $(this).text(),
+                                    },
+                                    {
+                                        duration: 3500,
+                                        easing: "swing",
+                                        step: function (now) {
+                                            $(this).text(Math.ceil(now));
+                                        },
+                                    }
+                                );
+                        });
+
+                    observer.unobserve(entry.target);
+                });
+            },
+            {
+                root: null,
+                threshold: 0,
+                rootMargin: window.innerWidth > 767 ? "-10%" : "-5%",
+            }
+        );
+
+        document.querySelectorAll(".number-card-wrap").forEach((numbers) => {
+            obsCounter.observe(numbers);
+        });
+    }
 
 
 
     //*===========
     //*  HEADER  =
     //*===========
-    if (winW > 1199) {
-        // hover on header dropdown
-        $(document).on('mouseenter', '.h-drop b', function () {
-            $(this).closest('.h-drop').addClass('is-active');
-        });
-
-        // leave header dropdown
-        $(document).on('mouseleave', '.h-drop', function () {
-            $(this).removeClass('is-active');
-        });
-
-    } else {
-
-        /* Open menu */
-        $(document).on('click', '.js-open-menu', function () {
-            $('html').toggleClass('overflow-menu');
-            $('header').removeClass('hide');
-            $('header').toggleClass('open-menu');
-        });
-
-        /* Close menu */
-        $(document).on('click', '.h-menu-overlay', function () {
-            $('html').removeClass('overflow-menu');
-            $('header').removeClass('open-menu');
-        });
-    }
-
-    /* Open Cabinet Dropdown */
-    $(document).on('click', 'header .h-cabinet:not(.open-popup)', function () {
-        $(this).toggleClass('is-active');
+    // Open menu
+    $(document).on('click', '.js_open_menu', function () {
+        $('html').toggleClass('overflow-menu');
+        $('header').removeClass('hide');
+        $('header').toggleClass('open-menu');
     });
 
-    /* Close Cabinet Dropdown */
-    $(document).on('click', function (e) {
-        if (!$(e.target).closest('.h-cabinet').length) {
-            $('.h-cabinet').removeClass('is-active');
-        }
+    // Close menu
+    $(document).on('click', '.h-menu-overlay', function () {
+        $('html').removeClass('overflow-menu');
+        $('header').removeClass('open-menu');
     });
-
 
 
 
@@ -245,7 +309,6 @@ jQuery(function ($) {
                         popupWrapper.innerHTML = this.responseText;
 
                         setTimeout(function () {
-                            _functions.initSelect('.popup-wrapper');
                             _functions.initMask()
                             _functions.openPopup('.popup-content[data-rel="' + dataRel + '"]');
                         }, 50);
@@ -256,7 +319,6 @@ jQuery(function ($) {
             }
         }
     });
-
 
 
 
@@ -282,7 +344,7 @@ jQuery(function ($) {
     }
     document.addEventListener('keydown', keyboardFocus, false);
 
-    // tabs
+    // Tabs
     $(document).on('click', '._tab-item', function () {
         let tab = $(this).closest('._tabs').find('._tab');
         let i = $(this).index();
@@ -293,7 +355,7 @@ jQuery(function ($) {
         });
     });
 
-    // accordion
+    // Accordion
     $(document).on('click', '.accordion-title', function () {
         if ($(this).hasClass('is-active')) {
             $(this).removeClass('is-active').next().slideUp();
@@ -302,7 +364,6 @@ jQuery(function ($) {
             $(this).addClass('is-active').next().slideDown();
         }
     });
-
 
 
 
@@ -338,18 +399,7 @@ jQuery(function ($) {
 
 
 
-
     //*=============
     //*  OTHER JS  =
     //*=============
-    // Seo block
-    $(document).on("click", ".seo-btn", function () {
-        let th = $(this);
-        let parent = th.closest('.seo-block');
-
-        th.toggleClass('is-active');
-        parent.find('.more-content').slideToggle(600);
-    });
-
-
 });

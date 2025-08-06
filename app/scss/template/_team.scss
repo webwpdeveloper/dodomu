@@ -1,29 +1,49 @@
 @use "./../mixins" as *;
 
-/*--------------------*/
+/*====================*/
 /*  Team              */
-/*--------------------*/
-.team-item {
-    text-align: center;
+/*====================*/
+.team-wrap {
+    --items: 1;
+    --gap: 1.25rem;
+    position: relative;
+    gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(var(--items), 1fr);
+}
 
-    >*+* {
-        margin-top: max(1rem, 1.25vw);
-    }
+.team-card {
+    position: relative;
+    width: 100%;
+
+    gap: 1rem;
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
 }
 
 .team-img {
     position: relative;
     overflow: hidden;
-    border-radius: var(--rd-1);
-    padding-top: 120%;
+    display: block;
+    width: 100%;
+    aspect-ratio: 492 / 343;
+    border-radius: 0.75rem;
 
     img {
         @include objectFit;
+        border-radius: 0.75rem;
     }
 }
 
-.team-name {
-    font-size: var(--h4);
-    line-height: 1.2;
-    color: var(--clr-black);
+@include minMedia(md) {
+    .team-wrap {
+        --items: 2;
+    }
+}
+
+@include minMedia(lg) {
+    .team-wrap {
+        --items: 3;
+    }
 }

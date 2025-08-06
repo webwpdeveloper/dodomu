@@ -1,0 +1,48 @@
+@use "./../mixins" as *;
+
+/*==================*/
+/* Animations       */
+/*==================*/
+.text-animate {
+    opacity: 0;
+
+    &__word {
+        >i {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: 1.5s;
+            transform-origin: left top;
+        }
+
+        &.animated {
+            >i {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+    }
+}
+
+.text-animated {
+    opacity: 1;
+}
+
+.slideUp {
+    --time: 1.5s;
+    --delay: calc(.11s * var(--animate-index));
+    will-change: transform, opacity;
+    opacity: 0;
+    transform: translateY(3rem);
+
+    &.animated {
+        animation: var(--time) var(--cubic-2) var(--delay) slideUp forwards;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

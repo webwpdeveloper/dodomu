@@ -1,0 +1,82 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  Checkbox & Radio  */
+/*====================*/
+.ch-box-wrap {
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ch-box {
+    --ch-size: 1rem;
+    --lh-size: calc(var(--ch-size) * 1.25);
+    cursor: pointer;
+    font-size: var(--ch-size);
+    line-height: var(--lh-size);
+    text-align: left;
+    gap: calc(var(--ch-size) / 2);
+    display: inline-flex;
+    align-items: center;
+
+    a {
+        color: var(--clr-primary);
+        text-decoration: underline;
+        text-decoration-color: transparent;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        display: inline-block;
+        position: relative;
+        vertical-align: text-top;
+        color: var(--clr-text);
+        height: var(--lh-size);
+        width: var(--lh-size);
+
+        flex-shrink: 0;
+        align-self: baseline;
+        border-radius: 0.25rem;
+        border: rem(1) solid currentColor;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: block;
+            width: 66.68%;
+            height: 66.68%;
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: inherit;
+            background-color: currentColor;
+            transition: var(--transition-1);
+        }
+
+        &:checked {
+            color: var(--clr-primary);
+
+            &:before {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    }
+
+    input[type="radio"] {
+        border-radius: 100%;
+    }
+}
+
+@include minMedia(xl) {
+    .ch-box a:not(.btn):hover {
+        text-decoration-color: currentColor;
+    }
+}
+
+@include maxMedia(sm) {
+    .ch-box-wrap {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

@@ -1,94 +1,132 @@
 @use "./../mixins" as *;
 
-/*--------------------*/
+/*====================*/
 /*  Buttons           */
-/*--------------------*/
+/*====================*/
 .btn {
-    cursor: pointer;
-    user-select: none;
-    overflow: clip;
-    text-decoration: none;
-    flex-shrink: 0;
-
+    --btn-h: 3.5rem;
     position: relative;
+    cursor: pointer;
+    overflow: hidden;
     z-index: 1;
-    font-size: 1rem;
-    line-height: 1em;
-    font-weight: 500;
-    letter-spacing: -0.32px;
-    color: var(--clr-black);
-    
-    padding: 0.875rem 1.5rem;
-    border: none;
-    border-radius: var(--rd-2);
-    background-color: var(--clr-primary);
-    transition: var(--transition-1);
+    user-select: none;
+    transition: 0.3s linear;
 
-    gap: .8em;
+    height: var(--btn-h);
+    border-radius: 0.375rem;
+
+    gap: 0.625rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+
+    font-size: 1rem;
+    line-height: normal;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    padding: 0.75rem 1.5em;
+
+    b[data-txt] {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        font-size: inherit;
+        line-height: inherit;
+        color: transparent;
+
+        &::before,
+        &::after {
+            content: attr(data-txt);
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: 0.3s linear;
+        }
+
+        &::after {
+            transform: translateY(100%);
+        }
+    }
+
+    &-icon {
+        position: relative;
+        display: inline-block;
+        width: 1.75em;
+        height: 1.75em;
+        flex-shrink: 0;
+        border-radius: 100%;
+        transition: 0.3s linear;
+
+        svg {
+            --size: 0.625em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
+            width: var(--size);
+            height: var(--size);
+            flex-shrink: 0;
+            transition: transform 0.3s linear;
+        }
+    }
 
     &-primary {
         background-color: var(--clr-primary);
-        color: var(--clr-white);
-    }
-
-    &-secondary {
-        background-color: var(--clr-white);
         color: var(--clr-black);
-    }
 
-    svg {
-        color: currentColor;
+        b[data-txt] {
 
-        *[stroke] {
-            stroke: currentColor;
+            &::before,
+            &::after {
+                color: var(--clr-black);
+            }
         }
 
-        *[fill] {
-            fill: currentColor;
-        }
-    }
-
-    &-block {
-        width: 100%;
-    }
-
-    &.disabled {
-        pointer-events: none;
-        background-color: var(--clr-grey);
-    }
-
-    &:has(svg:only-child) {
-        padding: 0.9em;
-
-        svg {
-            width: 1.2em;
-            height: 1.2em;
+        .btn-icon {
+            background-color: var(--clr-black);
+            color: var(--clr-primary);
         }
     }
 }
 
+.btn-block {
+    width: 100%;
+}
+
+.btn.disabled {
+    pointer-events: none;
+    background-color: var(--clr-grey);
+}
+
 .btn-close {
-    display: inline-block;
+    --size: 2rem;
     position: relative;
     cursor: pointer;
-    --bw: 2.75rem;
-    width: var(--bw);
-    height: var(--bw);
-    color: var(--clr-white);
+    transition: var(--transition-1);
+
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    flex-shrink: 0;
+
     border-radius: 100%;
     background-color: var(--clr-black);
-    transition: var(--transition-1);
+    color: var(--clr-white);
 
     &::before,
     &::after {
-        content: '';
+        content: "";
         position: absolute;
+        z-index: 1;
         top: 50%;
         left: 50%;
-        width: 50%;
+        width: 52%;
         height: 0.125rem;
         transform: translate(-50%, -50%) rotate(45deg);
         background-color: currentColor;
@@ -99,63 +137,54 @@
     }
 }
 
-.btn-link {
-    gap: 0.5em;
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 1.25rem;
-    line-height: 1.38em;
-    color: var(--clr-title);
-    font-weight: 500;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    transition: var(--transition-1);
-}
-
 @include minMedia(xl) {
     .btn:hover {
-        color: var(--clr-white);
-        background-color: var(--clr-primary);
+        b[data-txt] {
+            &::before {
+                transform: translateY(-120%);
+            }
+
+            &::after {
+                transform: translateY(0%);
+            }
+        }
+
+        svg {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
     }
 
     .btn-primary:hover {
-        color: var(--clr-white);
-        background-color: var(--clr-secondary);
+        background-color: var(--clr-black);
+        color: var(--clr-primary);
+
+        b[data-txt] {
+
+            &::before,
+            &::after {
+                color: var(--clr-primary);
+            }
+        }
+
+        .btn-icon {
+            background-color: var(--clr-primary);
+            color: var(--clr-black);
+        }
     }
 
-    .btn-secondary:hover {
-        color: var(--clr-black);
-        background-color: var(--clr-primary);
+    .sec-black .btn-primary:hover {
+        border: 0.0625rem solid var(--clr-primary);
     }
 
     .btn-close:hover {
-        color: var(--clr-red);
-        background-color: var(--clr-grey);
-    }
-
-    .btn-link:hover {
-        color: var(--clr-primary);
-        text-decoration: underline;
-        text-decoration-color: currentColor;
-    }
-}
-
-@include maxMedia(xl) {
-
-    .btn,
-    .btn-link {
-        font-size: 1.125rem;
+        transform: rotate(90deg);
     }
 }
 
 @include maxMedia(lg) {
-    .btn,
-    .btn-link {
-        font-size: 1rem;
-    }
-
-    .btn-close {
-        --bw: 2rem;
+    .btn {
+        --btn-h: 3rem;
+        font-size: 0.875rem;
+        padding: 0.75rem 1em;
     }
 }

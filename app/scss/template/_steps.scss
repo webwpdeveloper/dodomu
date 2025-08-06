@@ -1,0 +1,66 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  Steps             */
+/*====================*/
+.step-block {
+    gap: 1.25rem;
+    display: grid;
+}
+
+.step-card-wrap {
+    --items: 1;
+    --gap: 1.25rem;
+    position: relative;
+    gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(var(--items), 1fr);
+}
+
+.step-card {
+    --pd: 1.25rem;
+    position: relative;
+    width: 100%;
+
+    gap: 1rem;
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+
+    border-radius: 0.75rem;
+    background-color: var(--clr-grey);
+
+    padding: var(--pd);
+
+    .title {
+        span {
+            color: var(--clr-primary);
+        }
+    }
+
+    .text {
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@include minMedia(lg) {
+    .step-card-wrap {
+        --items: 3;
+    }
+}
+
+@include minMedia(xl) {
+    .step-block {
+        gap: var(--sp-md);
+        grid-template-columns: auto 49.343%;
+    }
+
+    .step-card-wrap {
+        grid-column: span 2;
+    }
+
+    .step-card {
+        --pd: 1.5rem;
+    }
+}

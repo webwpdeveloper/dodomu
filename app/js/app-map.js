@@ -3,11 +3,11 @@ jQuery(function ($) {
 
     function initMap(element) {
 
-        let infoBoxWidth = (winW < 768) ? 280 : 536,
+        let infoBoxWidth = (winW < 768) ? 288 : 288,
             infoBoxOptions = {
                 alignBottom: true,
                 content: 'text',
-                pixelOffset: (winW < 768) ? new google.maps.Size(infoBoxWidth / -2, infoBoxWidth / -6) : new google.maps.Size(infoBoxWidth / -2, infoBoxWidth / -6),
+                pixelOffset: (winW < 768) ? new google.maps.Size(infoBoxWidth / -2, infoBoxWidth / -5) : new google.maps.Size(infoBoxWidth / -2, infoBoxWidth / -5),
                 boxStyle: {
                     width: `${infoBoxWidth}px`
                 },
@@ -16,162 +16,208 @@ jQuery(function ($) {
             },
             infoBox = new InfoBox(infoBoxOptions),
             markersArr = [],
-            mapStyles = [{
-                    "featureType": "water",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#e9e9e9"
-                        },
+            mapStyles = [
+                {
+                    "featureType": "administrative",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
                         {
-                            "lightness": 17
+                            "color": "#686868"
                         }
                     ]
                 },
                 {
                     "featureType": "landscape",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#f5f5f5"
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "saturation": -100
                         },
                         {
-                            "lightness": 20
+                            "lightness": 45
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "visibility": "simplified"
                         }
                     ]
                 },
                 {
                     "featureType": "road.highway",
                     "elementType": "geometry.fill",
-                    "stylers": [{
-                            "color": "#ffffff"
-                        },
+                    "stylers": [
                         {
-                            "lightness": 17
+                            "lightness": "-22"
                         }
                     ]
                 },
                 {
                     "featureType": "road.highway",
                     "elementType": "geometry.stroke",
-                    "stylers": [{
-                            "color": "#ffffff"
+                    "stylers": [
+                        {
+                            "saturation": "11"
                         },
                         {
-                            "lightness": 29
+                            "lightness": "-51"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text",
+                    "stylers": [
+                        {
+                            "saturation": "3"
                         },
                         {
-                            "weight": 0.2
+                            "lightness": "-56"
+                        },
+                        {
+                            "weight": "2.20"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "lightness": "-52"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "weight": "6.13"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "lightness": "-10"
+                        },
+                        {
+                            "gamma": "0.94"
+                        },
+                        {
+                            "weight": "1.24"
+                        },
+                        {
+                            "saturation": "-100"
+                        },
+                        {
+                            "visibility": "off"
                         }
                     ]
                 },
                 {
                     "featureType": "road.arterial",
                     "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#ffffff"
+                    "stylers": [
+                        {
+                            "lightness": "-16"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "saturation": "-41"
                         },
                         {
-                            "lightness": 18
+                            "lightness": "-41"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "weight": "5.46"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
                         }
                     ]
                 },
                 {
                     "featureType": "road.local",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#ffffff"
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "weight": "0.72"
                         },
                         {
-                            "lightness": 16
+                            "lightness": "-16"
                         }
                     ]
                 },
                 {
-                    "featureType": "poi",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#f5f5f5"
-                        },
-                        {
-                            "lightness": 21
-                        }
-                    ]
-                },
-                {
-                    "featureType": "poi.park",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#dedede"
-                        },
-                        {
-                            "lightness": 21
-                        }
-                    ]
-                },
-                {
-                    "elementType": "labels.text.stroke",
-                    "stylers": [{
-                            "visibility": "on"
-                        },
-                        {
-                            "color": "#ffffff"
-                        },
-                        {
-                            "lightness": 16
-                        }
-                    ]
-                },
-                {
+                    "featureType": "road.local",
                     "elementType": "labels.text.fill",
-                    "stylers": [{
-                            "saturation": 36
-                        },
+                    "stylers": [
                         {
-                            "color": "#333333"
-                        },
-                        {
-                            "lightness": 40
+                            "lightness": "-37"
                         }
                     ]
-                },
-                {
-                    "elementType": "labels.icon",
-                    "stylers": [{
-                        "visibility": "off"
-                    }]
                 },
                 {
                     "featureType": "transit",
-                    "elementType": "geometry",
-                    "stylers": [{
-                            "color": "#f2f2f2"
-                        },
+                    "elementType": "all",
+                    "stylers": [
                         {
-                            "lightness": 19
+                            "visibility": "off"
                         }
                     ]
                 },
                 {
-                    "featureType": "administrative",
-                    "elementType": "geometry.fill",
-                    "stylers": [{
-                            "color": "#fefefe"
+                    "featureType": "water",
+                    "elementType": "all",
+                    "stylers": [
+                        {
+                            "color": "#b7e4f4"
                         },
                         {
-                            "lightness": 20
-                        }
-                    ]
-                },
-                {
-                    "featureType": "administrative",
-                    "elementType": "geometry.stroke",
-                    "stylers": [{
-                            "color": "#fefefe"
-                        },
-                        {
-                            "lightness": 17
-                        },
-                        {
-                            "weight": 1.2
+                            "visibility": "on"
                         }
                     ]
                 }
@@ -184,7 +230,7 @@ jQuery(function ($) {
             this.clusters = null;
         }
 
-        function addMarker(mapId, location, index, string, image, activeImage, filterVal) {
+        function addMarker(mapId, location, index, string, image) {
             maps[mapId].markers[index] = new google.maps.Marker({
                 position: location,
                 map: maps[mapId].map,
@@ -192,17 +238,13 @@ jQuery(function ($) {
                     url: image
                 },
                 mainImage: image,
-                activeIcon: activeImage,
-                desc: string,
-                filterValue: filterVal
+                desc: string
             });
 
             google.maps.event.addListener(maps[mapId].markers[index], 'click', function () {
                 infoBox.setContent(string);
                 infoBox.setPosition(location);
                 infoBox.open(maps[mapId].map);
-                this.setIcon(this.activeIcon);
-
 
                 maps[mapId].map.setCenter(location);
 
@@ -225,7 +267,6 @@ jQuery(function ($) {
                 zoomOnDesktop = mapInst.attr("data-zoom") ? parseInt(mapInst.attr("data-zoom")) : 12,
                 zoomOnMobile = mapInst.attr("data-xs-zoom") ? parseInt(mapInst.attr("data-xs-zoom")) : 10,
                 zoomMap = winW < 768 ? zoomOnMobile : zoomOnDesktop;
-
 
             const mapUiOptions = {
                 zoom: zoomMap,
@@ -267,14 +308,11 @@ jQuery(function ($) {
                     for (let i = 0; i < data.length; i++) {
 
                         const {
-                            filterValue,
                             dataRel,
                             dataLat,
                             dataLng,
                             marker,
-                            markerActive,
                             mobileMarker,
-                            mobileMarkerActive,
                             city,
                             street,
                             googleLink,
@@ -283,63 +321,54 @@ jQuery(function ($) {
                             email,
                             workDaysOne,
                             workDaysTwo,
-                            locationImg
+                            logo
                         } = data[i]
 
-                        const imgMarker = winW < 768 ? mobileMarker : marker,
-                            imgMarkerActive = winW < 768 ? mobileMarkerActive : markerActive;
-
-
+                        const imgMarker = winW < 768 ? mobileMarker : marker;
 
                         const infoWrap = $('<div class="info-box-wrapper">');
                         infoWrap.append($('<div class="btn-close">'));
 
                         const infoInner = $('<div class="info-box-inner">');
 
-                        if (phone && phoneLink) {
-                            const item = $('<div class="cnt-item">');
-                            item.append($(`<div class="cnt-img"><img src="img/icons/icon-phone.svg"></div>`));
-                            item.append($(`<div class="cnt-info"><a href="tel:${phoneLink}">${phone}</a></div>`));
-                            infoInner.append(item);
+                        if (logo) {
+                            const infoImg = $('<div class="info-box-logo">');
+                            infoImg.append($(`<img src="${logo}" alt="Logo">`));
+                            infoInner.append(infoImg);
                         }
 
                         if (city && street) {
                             const item = $('<div class="cnt-item">');
-                            item.append($(`<div class="cnt-img"><img src="img/icons/icon-pin.svg"></div>`));
-                            item.append($(`<div class="cnt-info"><a href="${googleLink ? googleLink : '#' }">${city}, ${street}</a></div>`));
+                            item.append($(`<div class="cnt-info"><a href="${googleLink ? googleLink : '#'}">${city}, ${street}</a></div>`));
+                            infoInner.append(item);
+                        }
+
+                        if (phone && phoneLink) {
+                            const item = $('<div class="cnt-item">');
+                            item.append($(`<div class="cnt-info"><a href="tel:${phoneLink}">${phone}</a></div>`));
                             infoInner.append(item);
                         }
 
                         if (email) {
                             const item = $('<div class="cnt-item">');
-                            item.append($(`<div class="cnt-img"><img src="img/icons/icon-mail.svg"></div>`));
                             item.append($(`<div class="cnt-info"><a href="mailto:${email}">${email}</a></div>`));
                             infoInner.append(item);
                         }
 
                         if (workDaysOne || workDaysTwo) {
                             const item = $('<div class="cnt-item">');
-                            item.append($(`<div class="cnt-img"><img src="img/icons/icon-calendar.svg"></div>`));
-                            item.append($(`<div class="cnt-info">${workDaysOne ? '<div>' + workDaysOne + '</div>' : '' }${workDaysTwo ? '<div>' + workDaysTwo + '</div>' : '' }</div>`));
+                            item.append($(`<div class="cnt-info">${workDaysOne ? '<div>' + workDaysOne + '</div>' : ''}${workDaysTwo ? '<div>' + workDaysTwo + '</div>' : ''}</div>`));
                             infoInner.append(item);
                         }
 
                         infoWrap.append(infoInner);
-
-                        if (locationImg) {
-                            const infoImg = $('<div class="info-box-img">');
-                            infoImg.append($(`<img src="${locationImg}">`));
-                            infoWrap.append(infoImg);
-                        }
 
                         let markerInst = addMarker(
                             dataRel,
                             new google.maps.LatLng(dataLat, dataLng),
                             i,
                             infoWrap[0].outerHTML,
-                            imgMarker,
-                            imgMarkerActive,
-                            filterValue
+                            imgMarker
                         );
 
                         markersArr.push(markerInst);
@@ -357,59 +386,23 @@ jQuery(function ($) {
                     if (lat.length == 0 && lng.length == 0) {
                         maps[mapId].map.fitBounds(maps[mapId].bounds);
                     }
-
-                    function filterMarkers(val) {
-                        markersArr.forEach(function (marker) {
-                            marker.active = false;
-                            marker.setIcon(marker.mainImage);
-                        });
-
-
-                        // console.log(maps)
-                        // console.log(maps[mapId])
-
-                        maps[mapId].bounds = new google.maps.LatLngBounds();
-                        maps[mapId].markerClusterer.clearMarkers();
-
-                        markersArr.forEach(function (marker) {
-                            if (val !== '*') {
-                                if (marker.filterValue == val) {
-                                    marker.setVisible(true);
-                                    maps[mapId].bounds.extend(marker.getPosition());
-                                    maps[mapId].markerClusterer.addMarker(marker);
-
-                                } else {
-                                    marker.setVisible(false);
-                                    maps[mapId].markerClusterer.removeMarker(marker);
-                                }
-
-                            } else {
-                                marker.setVisible(true);
-                                maps[mapId].bounds.extend(marker.getPosition());
-                                maps[mapId].markerClusterer.addMarker(marker);
-                            }
-                        });
-
-                        // maps[mapId].map.fitBounds(maps[mapId].bounds);
-                    }
-
-                    $(document).on('click', '.js_map_filters li', function () {
-                        $(this).addClass('is-active').siblings().removeClass('is-active');
-                        let val = $(this).attr('data-map-filter');
-
-                        infoBox.close();
-                        filterMarkers(val);
-                    });
-
                 }
             });
 
-
             maps[mapId] = new Map(mapId, mapUiOptions);
 
+            // Close info-box on icon
+            // infoBox.addListener('closeclick', function () {
+            //     infoBox.close();
+            //     maps[mapId].markers.forEach(function (marker) {
+            //         marker.active = false;
+            //         marker.setIcon(marker.mainImage);
+            //     });
+            // });
 
             // Close info-box on icon
-            infoBox.addListener('closeclick', function () {
+            $('.info-box-wrapper .btn-close').on('click', function () {
+                infoBox.close();
                 maps[mapId].markers.forEach(function (marker) {
                     marker.active = false;
                     marker.setIcon(marker.mainImage);
@@ -417,13 +410,13 @@ jQuery(function ($) {
             });
 
             // Close info-box on map
-            maps[mapId].map.addListener('click', function () {
-                infoBox.close();
-                maps[mapId].markers.forEach(function (marker) {
-                    marker.active = false;
-                    marker.setIcon(marker.mainImage);
-                });
-            });
+            // maps[mapId].map.addListener('click', function () {
+            //     infoBox.close();
+            //     maps[mapId].markers.forEach(function (marker) {
+            //         marker.active = false;
+            //         marker.setIcon(marker.mainImage);
+            //     });
+            // });
         }
 
         initialize(element);

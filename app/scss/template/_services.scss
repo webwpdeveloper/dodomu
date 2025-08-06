@@ -1,0 +1,59 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  Services          */
+/*====================*/
+.service-item {
+    position: relative;
+    gap: 1.25rem;
+    display: grid;
+    border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.15);
+    padding-block: 1.25rem;
+
+    .text {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.service-title {
+    gap: 1.25rem;
+    display: inline-flex;
+    color: var(--clr-white);
+
+    span {
+        color: var(--clr-primary);
+    }
+}
+
+@include minMedia(xl) {
+
+    .service-title,
+    .text {
+        transition: var(--transition-1);
+    }
+
+    .service-item {
+        gap: 2.5rem;
+        align-items: center;
+        grid-template-columns: 1fr 1.05fr;
+        padding-block: 2.5rem;
+
+        &:hover {
+            .service-title {
+                color: var(--clr-primary);
+            }
+
+            .text {
+                color: var(--clr-white);
+            }
+        }
+    }
+
+    .service-title {
+        gap: 2.5rem;
+    }
+}

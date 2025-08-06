@@ -1,0 +1,67 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  LR Block          */
+/*====================*/
+.lr-block {
+    gap: 1.25rem;
+    display: grid;
+}
+
+.lr-img {
+    position: relative;
+    aspect-ratio: 735 / 790;
+    overflow: hidden;
+
+    img {
+        @include objectFit;
+    }
+}
+
+.lr-content {
+    align-self: center;
+
+    >*+* {
+        margin-top: 1.25rem;
+    }
+}
+
+@include minMedia(lg) {
+    .lr-block {
+        gap: 2.5rem;
+        grid-template-columns: 40% auto;
+    }
+
+    .lr-right {
+        grid-template-columns: auto 40%;
+
+        .lr-img {
+            order: 1;
+            margin-left: 0;
+            margin-right: calc((var(--container-padd) + var(--bs-gutter-x) * 0.5) * -1);
+        }
+    }
+
+    .lr-img {
+        width: calc(100% + var(--container-padd) + var(--bs-gutter-x) * 0.5);
+        margin-left: calc((var(--container-padd) + var(--bs-gutter-x) * 0.5) * -1);
+        border-radius: 0 var(--rd-1) var(--rd-1) 0;
+    }
+}
+
+@include minMedia(xl) {
+    .lr-block {
+        gap: clamp(1.875rem, -13.3149rem + 31.6456vw, 14.375rem);
+        grid-template-columns: 35.2% auto;
+    }
+
+    .lr-right {
+        grid-template-columns: auto 35.2%;
+    }
+
+    .lr-content {
+        >*+* {
+            margin-top: 2.5rem;
+        }
+    }
+}

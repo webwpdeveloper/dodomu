@@ -1,0 +1,162 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  Projects          */
+/*====================*/
+.project-wrap {
+    --items: 1;
+    --gap: 1.25rem;
+    position: relative;
+    gap: var(--gap);
+    display: grid;
+    grid-template-columns: repeat(var(--items), 1fr);
+
+    +:has(.btn) {
+        display: flex;
+        width: fit-content;
+        margin-inline: auto;
+        margin-top: var(--sp-title);
+    }
+}
+
+.project-card {
+    position: relative;
+    width: 100%;
+
+    gap: 0;
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+
+    >*+* {
+        margin-top: 0.5rem;
+    }
+
+    .title {
+        transition: var(--transition-1);
+    }
+}
+
+.project-img {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    aspect-ratio: 48 / 46;
+    border-radius: 0.75rem;
+
+    img {
+        @include objectFit;
+        border-radius: 0.75rem;
+        transition: var(--transition-1);
+    }
+
+    +* {
+        margin-top: 1rem;
+    }
+}
+
+@include minMedia(md) {
+    .project-wrap {
+        --items: 2;
+    }
+}
+
+@include minMedia(lg) {
+    .project-wrap {
+        --items: 3;
+    }
+}
+
+@include minMedia(xl) {
+    .project-wrap {
+        --gap: 2.5rem;
+    }
+
+    .project-card:hover {
+        .title {
+            color: var(--clr-primary);
+        }
+
+        .project-img {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+/*====================*/
+/*  Project Detail    */
+/*====================*/
+.project-det {
+    gap: 2rem;
+    display: grid;
+
+    &-content {
+        >*+* {
+            margin-top: var(--sp-title);
+        }
+    }
+
+    .text {
+        font-weight: 500;
+    }
+
+    &-entry {
+        >*+* {
+            margin-top: var(--sp-title);
+        }
+    }
+
+    &-info {
+        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &-item {
+        font-size: var(--text-sm);
+        line-height: 1.4em;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--clr-text);
+
+        border-top: 0.0625rem solid var(--clr-border);
+        padding-top: 1rem;
+
+        >* {
+            +* {
+                margin-top: 0.5rem;
+            }
+
+            &:last-child {
+                font-size: var(--h5);
+                line-height: normal;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                color: var(--clr-title);
+            }
+        }
+    }
+}
+
+@include minMedia(md) {
+    .project-det {
+        &-info {
+            gap: 1.25rem;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+@include minMedia(xl) {
+    .project-det {
+        gap: var(--sp-md);
+        grid-template-columns: repeat(2, 1fr);
+
+        &-info {
+            gap: var(--sp-md);
+        }
+    }
+}

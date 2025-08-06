@@ -1,16 +1,16 @@
-@use "./../mixins"as *;
+@use "./../mixins" as *;
 
-/*--------------------*/
-/*  BREADCRUMBS       */
-/*--------------------*/
+/*====================*/
+/*  Breadcrumbs       */
+/*====================*/
 .breadcrumbs {
-    --br-fz: clamp(0.875rem, 0.77rem + 0.22vw, 1rem);
-    --br-space: 1rem;
+    --br-fz: 0.875rem;
+    --br-space: 0.75rem;
     width: 100%;
-    margin-block: clamp(0.75rem, 0.54rem + 0.44vw, 1rem);
     overflow-y: hidden;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    margin-block: 1.25rem;
 
     ul {
         min-width: max-content;
@@ -22,17 +22,24 @@
         position: relative;
         display: inline-block;
         font-size: var(--br-fz);
-        line-height: 1em;
-        color: var(--clr-title);
+        line-height: normal;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--clr-text);
         scroll-snap-align: start;
         scroll-margin-left: var(--br-space);
 
         &:after {
-            content: '/';
+            content: '';
             position: relative;
             display: inline-block;
+            vertical-align: middle;
+            width: 0.25rem;
+            height: 0.25rem;
+            flex-shrink: 0;
+            background-color: currentColor;
+            border-radius: 100%;
             margin: 0 0.5rem;
-            font-size: 90%;
         }
 
         &:last-child:after {
@@ -40,27 +47,20 @@
         }
 
         &.active {
-            text-decoration: underline;
-        }
-    }
-
-    .icon {
-        --size: 1.125rem;
-        display: inline-block;
-        vertical-align: middle;
-        margin-top: -0.0625rem;
-
-        *[stroke] {
-            stroke: currentColor;
+            color: var(--clr-title);
         }
     }
 }
 
 .banner {
     .breadcrumbs {
+        --clr-text: rgba(255, 255, 255, 0.6);
+        --clr-title: #FFFFFF;
         position: absolute;
-        top: 0;
+        z-index: 2;
         left: 0;
+        top: calc(var(--h-height) + 1.25rem);
+        margin-block: 0;
     }
 }
 
