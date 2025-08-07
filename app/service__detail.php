@@ -12,6 +12,10 @@
 
         <main>
             <?php include 'template-parts/_banner_5.php'; ?>
+            <?php include 'template-parts/_steps.php'; ?>
+            <?php include 'template-parts/_lr-block_4.php'; ?>
+            <?php include 'template-parts/_lr-block_2.php'; ?>
+            <?php include 'template-parts/_projects.php'; ?>
             <?php include 'template-parts/_cta.php'; ?>
         </main>
 
