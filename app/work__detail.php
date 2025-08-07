@@ -12,6 +12,7 @@
 
         <main>
             <?php include 'template-parts/_banner_2.php'; ?>
+            <?php include 'template-parts/_cta.php'; ?>
         </main>
 
         <?php include 'inc/global/_footer.php'; ?>

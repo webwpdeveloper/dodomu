@@ -14,6 +14,7 @@
             <?php include 'template-parts/_banner_1.php'; ?>
             <?php include 'template-parts/_works_grid.php'; ?>
             <?php include 'template-parts/_faq.php'; ?>
+            <?php include 'template-parts/_cta.php'; ?>
         </main>
 
         <?php include 'inc/global/_footer.php'; ?>
