@@ -17,7 +17,7 @@
 .input-field {--int-height: 3.5rem;--int-pd: 1rem;--font-size: 1rem;display: block;position: relative;text-align: left;line-height: 0;font-size: var(--font-size);}
 .input {position: relative;z-index: 1;transition: var(--transition-1);border-bottom: 0.0625rem solid var(--clr-border);font-size: var(--font-size);font-weight: 500;line-height: var(--int-height);height: var(--int-height);color: var(--clr-title);text-overflow: ellipsis;padding-block: var(--int-pd);}
 textarea.input {height: 4rem;line-height: 1.3em;}
-.input-label {pointer-events: none;display: inline-block;text-align: left;font-size: var(--font-size);line-height: 1.4em;font-weight: 500;letter-spacing: -0.02em;color: rgba(0, 0, 0, 0.75);max-width: calc(100% - var(--int-pd) * 2);display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;margin-bottom: -0.625rem;}
+.input-label {pointer-events: none;display: inline-block;text-align: left;font-size: var(--font-size);line-height: 1.4em;font-weight: 500;letter-spacing: -0.02em;color: var(--clr-plc);max-width: calc(100% - var(--int-pd) * 2);display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;margin-bottom: -0.625rem;}
 .input-error {font-size: 0.75rem;line-height: 1.5em;font-weight: 400;color: var(--clr-red);margin-top: 0.25rem;display: none;}
 .input-success {font-size: 0.75rem;line-height: 1.5em;font-weight: 400;color: var(--clr-green);margin-top: 0.25rem;display: none;}
 .input-field.focus {z-index: 5;}

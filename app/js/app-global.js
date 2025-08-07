@@ -402,4 +402,34 @@ jQuery(function ($) {
     //*=============
     //*  OTHER JS  =
     //*=============
+    function customCursor() {
+        if (winW >= 1200) {
+            const $cursor = $('.cursor');
+
+            $(window).on("mousemove", function (e) {
+                $cursor.css({
+                    'left': e.clientX + 'px',
+                    'top': e.clientY + 'px'
+                });
+
+                if (
+                    $(e.target).closest('a').length ||
+                    $(e.target).closest('.open-popup').length
+                ) {
+                    $cursor.css('transform', 'translate(-50%, -50%) scale(1)');
+                } else {
+                    $cursor.css('transform', 'translate(-50%, -50%) scale(0.25)');
+                }
+            });
+
+            $(window).on("mouseleave", function () {
+                $cursor.css('opacity', '0');
+            });
+
+            $(window).on("mouseenter", function () {
+                $cursor.css('opacity', '1');
+            });
+        }
+    };
+    customCursor();
 });

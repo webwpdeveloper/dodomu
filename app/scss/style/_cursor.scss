@@ -1,0 +1,35 @@
+@use "./../mixins" as *;
+
+/*====================*/
+/*  Cursor            */
+/*====================*/
+@include minMedia (xl) {
+    .cursor {
+        will-change: translate;
+        pointer-events: none;
+        position: fixed;
+        overflow: hidden;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+
+        transform-origin: center;
+        transition: transform 0.3s ease;
+        transform: translate(-50%, -50%) scale(0.2);
+
+        display: block;
+        width: 4rem;
+        height: 4rem;
+
+        border-radius: 100%;
+        background-color: var(--clr-primary);
+        mix-blend-mode: difference;
+
+        >* {
+            position: absolute;
+            inset: 0;
+            display: inline-block;
+            border-radius: inherit;
+        }
+    }
+}

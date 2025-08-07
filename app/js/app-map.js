@@ -391,17 +391,10 @@ jQuery(function ($) {
 
             maps[mapId] = new Map(mapId, mapUiOptions);
 
-            // Close info-box on icon
-            // infoBox.addListener('closeclick', function () {
-            //     infoBox.close();
-            //     maps[mapId].markers.forEach(function (marker) {
-            //         marker.active = false;
-            //         marker.setIcon(marker.mainImage);
-            //     });
-            // });
-
-            // Close info-box on icon
-            $('.info-box-wrapper .btn-close').on('click', function () {
+            // Close info-box on custom close button using event delegation
+            $(document).on('click', '.info-box-wrapper .btn-close', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
                 infoBox.close();
                 maps[mapId].markers.forEach(function (marker) {
                     marker.active = false;
@@ -410,13 +403,13 @@ jQuery(function ($) {
             });
 
             // Close info-box on map
-            // maps[mapId].map.addListener('click', function () {
-            //     infoBox.close();
-            //     maps[mapId].markers.forEach(function (marker) {
-            //         marker.active = false;
-            //         marker.setIcon(marker.mainImage);
-            //     });
-            // });
+            maps[mapId].map.addListener('click', function () {
+                infoBox.close();
+                maps[mapId].markers.forEach(function (marker) {
+                    marker.active = false;
+                    marker.setIcon(marker.mainImage);
+                });
+            });
         }
 
         initialize(element);

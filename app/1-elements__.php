@@ -233,14 +233,14 @@
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center">
                                     <span
-                                        style="display: inline-block; width: 100px;height: 100px;border: 2px dashed #000; background: var(--bg-1)">
+                                        style="display: inline-block; width: 100px;height: 100px;border: 2px dashed #000; background: var(--bg-light)">
                                     </span>
                                     <br>
                                     <b>--clr-bg-1: #F9F9F9</b>
                                 </div>
                                 <div class="col-lg-2 col-md-3 col-sm-4 col-6 text-center">
                                     <span
-                                        style="display: inline-block; width: 100px;height: 100px;border: 2px dashed #000; background: var(--bg-2)">
+                                        style="display: inline-block; width: 100px;height: 100px;border: 2px dashed #000; background: var(--bg-dark)">
                                     </span>
                                     <br>
                                     <b>--clr-bg-2: #1A2530</b>
@@ -390,6 +390,8 @@
         </main>
 
         <?php include 'inc/global/_footer.php'; ?>
+
+        <div class="cursor"><span></span></div>
     </div>
 
     <!-- Popups -->

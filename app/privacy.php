@@ -51,6 +51,8 @@
         </main>
 
         <?php include 'inc/global/_footer.php'; ?>
+
+        <div class="cursor"><span></span></div>
     </div>
 
     <!-- Popups -->
