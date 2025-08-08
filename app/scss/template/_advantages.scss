@@ -14,10 +14,10 @@
 
 .advt-card {
     position: relative;
-    overflow: hidden;
     display: inline-block;
     width: 100%;
     border-radius: 0.75rem;
+    perspective: 1000px;
 
     &-front,
     &-back {
