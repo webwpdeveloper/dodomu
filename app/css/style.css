@@ -93,7 +93,7 @@
 .advt-block {--items: 1;--gap: 1.25rem;position: relative;gap: var(--gap);display: grid;grid-template-columns: repeat(var(--items), 1fr);}
 .advt-card {position: relative;overflow: hidden;display: inline-block;width: 100%;border-radius: 0.75rem;}
 .advt-card-front,
-.advt-card-back {display: flex;flex-direction: column;justify-content: center;min-height: 18.75rem;transition: var(--transition-1);transition-property: transform,opacity;text-align: center;padding: 1.25rem;}
+.advt-card-back {display: flex;flex-direction: column;justify-content: center;min-height: 18.75rem;transition: 0.45s linear;transition-property: transform,opacity;text-align: center;padding: 1.25rem;}
 .advt-card-front {gap: 1.5rem;transform: rotateY(0deg);background-color: var(--clr-black);border-radius: 0.875rem;}
 .advt-card-back {--clr-white: #181B20;position: absolute;inset: -0.125rem;opacity: 0;gap: 1.25rem;transform: rotateX(-180deg);background-color: var(--clr-primary);border-radius: inherit;}
 .advt-card .text {font-weight: 500;color: rgba(0, 0, 0, 0.6);}
